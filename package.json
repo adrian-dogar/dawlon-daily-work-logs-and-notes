@@ -1,0 +1,44 @@
+{
+  "name": "daily-work-logger",
+  "displayName": "Daily Work Logger",
+  "description": "Auto-name new files and save them in your work log project for daily notes.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/.vscode/dawlon.json"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.createTimestampedNote",
+        "title": "Create Timestamped Note"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.createTimestampedNote",
+        "key": "ctrl+n",
+        "mac": "cmd+n"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.93.0",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "eslint": "^9.9.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
