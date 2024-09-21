@@ -1,4 +1,4 @@
-# DAWLON: Daily Work Logger and Notes
+# DAWLON: Daily Worklogs and Notes
 
 Stop using Notepad++ for taking notes just because they are there when you restart. Use Dawlon instead and creating new notes will be a breeze, and they are all timestamped and saved. Weather you like to store your worklogs for each project inside its directory, or you like to have your notes in a specific day-to-day worklog dir. Dawlon is the tool for you.
 
