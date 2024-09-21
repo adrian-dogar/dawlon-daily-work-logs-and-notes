@@ -1,31 +1,23 @@
-# daily-work-logger README
+# DAWLON: Daily Work Logger and Notes
 
-This is the README for your extension "daily-work-logger". After writing up a brief description, we recommend including the following sections.
+Stop using Notepad++ for taking notes just because they are there when you restart. Use Dawlon instead and creating new notes will be a breeze, and they are all timestamped and saved. Weather you like to store your worklogs for each project inside its directory, or you like to have your notes in a specific day-to-day worklog dir. Dawlon is the tool for you.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+The CTRL+N (or CMD+N) command [for creating new text file] is overridden. Now, the new note text file is first created in your local hard drive first and than opened. Filenames are timestamped as `HH-mm-ss`and appended with the `.md` extension. At creation, they are placed inside today's folder, as `YYYY-mm-dd`
 
-For example if there is an image subfolder under your extension project workspace:
+Also, as soon as you type in the first line of the file, the filename will be appended with this information. This is useful for quickly identifying the file in the future.
 
 \!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Not specific requierements are needed for this extension.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+Currently, the extension holds its own config in the .vscode/dawlon.json file
 
 ## Known Issues
 
@@ -33,33 +25,11 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Enable/disable the feature on a specific workspace/project folder.
+The extension `.md` comes by default and hardcoded (ouch! sorry!)
+Choose the directory where the notes will be saved.
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**

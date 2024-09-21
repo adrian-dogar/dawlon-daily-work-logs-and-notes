@@ -1,5 +1,8 @@
 1. It works with auto-save feature turned on, to be tested without it:
-- turn the auto-save feature off
-- open new doc and write on second and third line
-- without saving the file write something on first line
-
+    - turn the auto-save feature off
+    - open new doc and write on second and third line
+    - without saving the file write something on first line
+2. Offer the option to save with different extension name
+3. Make the configuration interactive via Command Pallete
+4. If project is a git, add the basedir to .gitignore
+5. Add more descripton and screenshots to README.md

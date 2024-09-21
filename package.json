@@ -1,16 +1,20 @@
 {
   "name": "daily-work-logger",
-  "displayName": "Daily Work Logger",
-  "description": "Auto-name new files and save them in your work log project for daily notes.",
+  "displayName": "Dawlon: Daily Work Logger and Notes",
+  "description": "All new text files will be auto-named and saved in your project 'worklog' as daily notes.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.93.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adrian-dogar/dawlon-daily-worklogs-and-notes.git"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "workspaceContains:**/.vscode/dawlon.json",
+    "workspaceContains:**/.vscode/dawlon.json"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -26,7 +30,7 @@
       {
         "command": "dawlon.deactivate",
         "title": "Dawlon: Deactivate the daily work logs and notes feature for current project"
-      }    
+      }
     ],
     "keybindings": [
       {
@@ -39,14 +43,16 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "build": "node esbuild.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.93.0",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
-    "eslint": "^9.9.1",
+    "@types/vscode": "^1.93.0",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.9.1"
   }
 }
