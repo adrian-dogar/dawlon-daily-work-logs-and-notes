@@ -1,4 +1,5 @@
-it works with auto-save feature turned on, to be tested without it:
+1. It works with auto-save feature turned on, to be tested without it:
 - turn the auto-save feature off
 - open new doc and write on second and third line
 - without saving the file write something on first line
+

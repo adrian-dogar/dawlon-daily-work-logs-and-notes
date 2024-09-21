@@ -62,7 +62,17 @@ async function createTimestampedNote() {
 
     if (!fs.existsSync(markerFile)) {
         console.log('Marker file not found, creating it');
-        fs.writeFileSync(markerFile, JSON.stringify({ enabled: true }));
+        await create_new_empty_text_file();
+    }
+
+    const markerFileContent = fs.readFileSync(markerFile, 'utf8');
+    const markerData = JSON.parse(markerFileContent);
+
+    if (!markerData.enabled) {
+        console.log('Feature disabled in marker file');
+        vscode.window.showInformationMessage('Auto-naming feature is disabled in this workspace.');
+        await create_new_empty_text_file();
+        return;
     }
 
     const today = new Date();
@@ -109,6 +119,10 @@ async function createTimestampedNote() {
             closeListener.dispose();
         }
     });
+}
+
+async function create_new_empty_text_file() {
+    await vscode.commands.executeCommand('workbench.action.files.newUntitledFile');
 }
 
 async function updateFileName(editor) {
