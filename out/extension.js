@@ -55,6 +55,7 @@ async function createTimestampedNote() {
   if (!fs.existsSync(markerFile)) {
     console.log("Marker file not found, creating it");
     await create_new_empty_text_file();
+    return;
   }
   const markerFileContent = fs.readFileSync(markerFile, "utf8");
   const markerData = JSON.parse(markerFileContent);

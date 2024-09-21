@@ -2,8 +2,8 @@
   "name": "daily-worklogs-and-notes",
   "displayName": "Dawlon: Daily Worklogs and Notes",
   "description": "All new text files will be auto-named and saved in your project 'worklog' as daily notes.",
-  "version": "0.0.1",
-  "publisher": "Adrian Dogar",
+  "version": "1.0.0",
+  "publisher": "AdrianDogar",
   "engines": {
     "vscode": "^1.93.0"
   },
