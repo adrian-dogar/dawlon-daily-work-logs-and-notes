@@ -12,9 +12,19 @@ function debounce(func, delay) {
 }
 
 function activate(context) {
-	console.log('Extension is now active!');
+    console.log('Extension is now active!');
+
+    // Register the createTimestampedNote command
     let disposable = vscode.commands.registerCommand('extension.createTimestampedNote', createTimestampedNote);
     context.subscriptions.push(disposable);
+
+    // Register the initialize command
+    let initializeDisposable = vscode.commands.registerCommand('dawlon.initialize', () => initialize(context));
+    context.subscriptions.push(initializeDisposable);
+
+    // Register the disable command
+    let disableDisposable = vscode.commands.registerCommand('dawlon.deactivate', () => disable(context));
+    context.subscriptions.push(disableDisposable);
 }
 
 function deactivate() {}
@@ -77,7 +87,7 @@ async function createTimestampedNote() {
 
     const today = new Date();
     const dateFolder = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    const folderPath = path.join(projectRoot, dateFolder);
+    const folderPath = path.join(projectRoot, markerData.basedir, dateFolder);
 
     if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath, { recursive: true });
@@ -171,6 +181,85 @@ async function updateFileName(editor) {
         console.error('Error renaming file:', error);
         vscode.window.showErrorMessage(`Failed to rename file: ${error.message}`);
     }
+}
+
+function initialize(context) {
+    console.log('Initialize auto-naming and saving of an ad-hoc text file!');
+
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (!workspaceFolders) {
+        vscode.window.showErrorMessage('No workspace folder open.');
+        return;
+    }
+
+    const projectRoot = workspaceFolders[0].uri.fsPath;
+    const vscodeFolder = path.join(projectRoot, '.vscode');
+    const markerFile = path.join(vscodeFolder, 'dawlon.json');
+
+    if (!fs.existsSync(vscodeFolder)) {
+        fs.mkdirSync(vscodeFolder, { recursive: true });
+    }
+
+    if (!fs.existsSync(markerFile)) {
+        console.log('Dawlon feature is not active in this project.');
+        fs.writeFileSync(markerFile, '')
+    }
+
+    const markerFileContent = fs.readFileSync(markerFile, 'utf8');
+
+    var markerData;
+    try {
+        markerData = JSON.parse(markerFileContent);
+        markerData.enabled = true;
+        markerData = JSON.stringify(markerData, null, 2);
+    } catch (error) {
+        console.error('Failed to parse marker file:', error);
+        markerData = JSON.stringify({ "enabled": true, "basedir": "./" }, null, 2);
+    }
+
+    fs.writeFileSync(markerFile, markerData);
+
+    vscode.window.showInformationMessage('Dawlon initialized for current project.');
+}
+
+function disable(context) {
+    console.log('Disable auto-naming and saving of an ad-hoc text file!');
+
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (!workspaceFolders) {
+        vscode.window.showErrorMessage('No workspace folder open.');
+        return;
+    }
+
+    const projectRoot = workspaceFolders[0].uri.fsPath;
+    const vscodeFolder = path.join(projectRoot, '.vscode');
+    const markerFile = path.join(vscodeFolder, 'dawlon.json');
+
+    if (!fs.existsSync(vscodeFolder)) {
+        fs.mkdirSync(vscodeFolder, { recursive: true });
+    }
+
+    if (!fs.existsSync(markerFile)) {
+        console.log('Dawlon feature is not active in this project.');
+        fs.writeFileSync(markerFile, '')
+    }
+
+    const markerFileContent = fs.readFileSync(markerFile, 'utf8');
+
+    var markerData;
+    try {
+        markerData = JSON.parse(markerFileContent);
+        markerData.enabled = false;
+        markerData = JSON.stringify(markerData, null, 2);
+    } catch (error) {
+        console.error('Failed to parse marker file:', error);
+        markerData = JSON.stringify({ "enabled": false, "basedir": "./" }, null, 2);
+        vscode.window.showInformationMessage('Dawlon plugin was unable to parse the config. Therefore it was reinitialized and set to disabled.');
+    }
+
+    fs.writeFileSync(markerFile, markerData);
+
+    vscode.window.showInformationMessage('Dawlon was disabled for current project.');
 }
 
 function slugify(text) {

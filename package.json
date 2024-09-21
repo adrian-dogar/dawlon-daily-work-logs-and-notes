@@ -10,15 +10,23 @@
     "Other"
   ],
   "activationEvents": [
-    "workspaceContains:**/.vscode/dawlon.json"
+    "workspaceContains:**/.vscode/dawlon.json",
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "extension.createTimestampedNote",
-        "title": "Create Timestamped Note"
-      }
+        "title": "Dawlon: Create new timestamped file"
+      },
+      {
+        "command": "dawlon.initialize",
+        "title": "Dawlon: Initialize daily work logs and notes for current project"
+      },
+      {
+        "command": "dawlon.deactivate",
+        "title": "Dawlon: Deactivate the daily work logs and notes feature for current project"
+      }    
     ],
     "keybindings": [
       {
